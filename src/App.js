@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable require-jsdoc */
 import logo from './logo.svg';
 import './App.css';
 
