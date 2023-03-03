@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom"; import Login from "../Page/Auth/Login";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "../Page/Home";
 import Dashboard from "../Page/Dashboard";
 
 const Routing = () => {
@@ -8,9 +8,8 @@ const Routing = () => {
 
         <BrowserRouter>
             <Routes>
-                <Route exact path="/" element={<Dashboard />} />
+                <Route exact path="/" element={<Home />} />
                 <Route exact path="/dashboard" element={<Dashboard />} />
-                <Route exact path="/auth/login" element={<Login />} />
             </Routes>
         </BrowserRouter>
     );
