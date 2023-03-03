@@ -1,12 +1,17 @@
 import './App.css';
 import AuthProvider from './Context/authContext';
-import Dashboard from './Page/Dashboard';
+import Routing from './Routes';
+import { GoogleOAuthProvider } from "@react-oauth/google"
+
 function App() {
+  const GoogleClientID = process.env.REACT_APP_CLIENT_ID;
   return (
     <>
-      <AuthProvider>
-        <Dashboard />
-      </AuthProvider>
+      <GoogleOAuthProvider clientId={GoogleClientID}>
+        <AuthProvider>
+          <Routing />
+        </AuthProvider>
+      </GoogleOAuthProvider>
     </>
   );
 }
