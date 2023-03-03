@@ -5,7 +5,7 @@ import { AuthContext } from "../../../Context/authContext";
 export default function Login() {
   const authContext = useContext(AuthContext);
   const { auth, LoginGoogle, Logout, email} = authContext;
-
+  
   const GoogleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       LoginGoogle(tokenResponse.access_token);

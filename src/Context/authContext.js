@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import { Router } from "react-router-dom";
 import { loginWithGoogle } from "../API/auth";
 
 export const AuthContext = createContext();
@@ -10,22 +9,25 @@ const AuthProvider = ({ children }) => {
     const [token, setToken] = useState("");
     const [id, setId] = useState("");
     const [name, setName] = useState("");
+    const [user, setUser] = useState({});
 
     const LoginGoogle = async (token) => {
         try {
             const res = await loginWithGoogle(token);
             if (res.status === 200) {
-                console.log("Login Success");
                 setAuth(true);
-                setEmail(res.data.user.email);
-                setToken(res.data.user.token);
-                setId(res.data.id);
-                setName(res.data.name);
+                setEmail(res.user.email);
+                setToken(token);
+                setId(res.user._id);
+                setName(res.user.name);
                 setAuth(true);
+                setUser(res.user);
+                return (res.user);
             }
         }
         catch (err) {
             console.log(err);
+            return err;
         }
     };
 
@@ -35,6 +37,7 @@ const AuthProvider = ({ children }) => {
         setToken("");
         setId("");
         setName("");
+        setUser({});
     };
 
     const authContext = {
@@ -50,6 +53,8 @@ const AuthProvider = ({ children }) => {
         setName,
         LoginGoogle,
         Logout,
+        user,
+        setUser
     };
 
     return (
