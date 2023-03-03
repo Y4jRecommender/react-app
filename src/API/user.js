@@ -10,10 +10,20 @@ const createUser = async (data) => {
             },
             body: JSON.stringify(data),
         });
-        return await response.json();
+
+        // If the response 200, then alert the user that the account was created and redirect to the dashboard
+        if (response.status === 201) {
+            window.alert("Account created successfully");
+        }
+        const result = {
+            status: response.status,
+            data: await response.json(),
+        };
+        return result;
     }
     catch (err) {
         console.log(err);
+        window.alert("Error creating user");
     }
 }
 
