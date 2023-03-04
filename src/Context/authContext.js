@@ -10,7 +10,8 @@ const AuthProvider = ({ children }) => {
     const [id, setId] = useState("");
     const [name, setName] = useState("");
     const [user, setUser] = useState({});
-
+    const [role, setRole] = useState("user");
+    
     const LoginGoogle = async (token) => {
         try {
             const res = await loginWithGoogle(token);
@@ -22,6 +23,7 @@ const AuthProvider = ({ children }) => {
                 setName(res.user.name);
                 setAuth(true);
                 setUser(res.user);
+                setRole(res.user.role);
                 return (res.user);
             }
         }
@@ -54,7 +56,9 @@ const AuthProvider = ({ children }) => {
         LoginGoogle,
         Logout,
         user,
-        setUser
+        setUser,
+        role,
+        setRole
     };
 
     return (

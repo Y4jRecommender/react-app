@@ -1,12 +1,12 @@
 import { useContext, React, useEffect } from 'react'
-import { AuthContext } from '../../Context/authContext';
+import { AuthContext } from '../../../Context/authContext';
 import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 
-export default function Dashboard() {
+export default function CorporateDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
   const navigate = useNavigate();
