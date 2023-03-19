@@ -9,7 +9,7 @@ import { SectionContext } from '../../../Context/sectionContext';
 import CreateUser from '../User/CreateUser';
 import DeleteUser from '../User/DeleteUser';
 import AllUserAdmin from '../User/AllUser';
-
+import AllJobAdmin from '../Job/AllJob';
 export default function AdminDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
@@ -91,6 +91,13 @@ export default function AdminDashboard() {
         <>
           <AllUserAdmin />
         </>
+      )}
+
+      {/* all job admin */}
+      {section === "allJobAdmin" && (
+        <>
+         <AllJobAdmin />
+         </>
       )}
       
     </>
