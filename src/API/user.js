@@ -61,4 +61,21 @@ const getUserID = async (id) => {
     }
 }
 
-export { createUser, getUserEmail, getUserID };
+const editUser = async (data) => {
+    try {
+        const response = await fetch(`${API}/user/update`, {
+            method: "PUT",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        return await response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export { createUser, getUserEmail, getUserID, editUser };

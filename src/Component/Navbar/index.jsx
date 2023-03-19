@@ -11,11 +11,13 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import { AuthContext } from "../../Context/authContext";
 import { useGoogleLogin } from "@react-oauth/google";
+import { SectionContext } from '../../Context/sectionContext';
 
 export default function Navbar() {
   const authContext = useContext(AuthContext);
   const { name, auth, LoginGoogle, Logout, role } = authContext;
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { section, setSection } = useContext(SectionContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -52,7 +54,9 @@ export default function Navbar() {
               {role === "user" &&
                 (<>
                   <p>User&nbsp;</p>
-                  {/* <Button variant="secondary" href="/dashboard">DashBoard</Button> */}
+                  <Button variant="secondary" onClick={() => {
+                    setSection("home")
+                  }}>DashBoard</Button>
                 </>)
               }
               {role === "admin" &&
@@ -94,6 +98,10 @@ export default function Navbar() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
+                  <MenuItem onClick={() => {
+                    setSection("profile")
+                    handleClose()
+                  }}>Profile</MenuItem>
                   <MenuItem onClick={() => {
                     Logout()
                     handleClose()
