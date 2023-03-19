@@ -89,6 +89,27 @@ const deleteUser = async (email) => {
             },
             body: JSON.stringify(data),
         });
+        const result = {
+            status: response.status,
+            data: await response.json(),
+        }
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+// get all users   
+const getAllUsers = async () => {
+    try {
+        const response = await fetch(`${API}/user/all`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        });
         return await response.json();
     }
     catch (err) {
@@ -96,4 +117,4 @@ const deleteUser = async (email) => {
     }
 }
 
-export { createUser, getUserEmail, getUserID, editUser, deleteUser };
+export { createUser, getUserEmail, getUserID, editUser, deleteUser, getAllUsers };

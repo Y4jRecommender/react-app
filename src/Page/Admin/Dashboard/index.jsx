@@ -8,6 +8,7 @@ import { Container } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
 import CreateUser from '../User/CreateUser';
 import DeleteUser from '../User/DeleteUser';
+import AllUserAdmin from '../User/AllUser';
 
 export default function AdminDashboard() {
   const authContext = useContext(AuthContext);
@@ -30,6 +31,9 @@ export default function AdminDashboard() {
                 <Button variant="contained" onClick={() => {
                   setSection('createUserAdmin');
                 }}>Create a user</Button>
+                <Button variant="contained" onClick={() => {
+                  setSection('allUserAdmin');
+                }}>All user</Button>
                 <Button variant="contained" onClick={() => {
                   setSection('deleteUserAdmin');
                 }}>Delete a user</Button>
@@ -79,6 +83,13 @@ export default function AdminDashboard() {
       {section === "deleteUserAdmin" && (
         <>
           <DeleteUser />
+        </>
+      )}
+
+      {/* all user admin */}
+      {section === "allUserAdmin" && (
+        <>
+          <AllUserAdmin />
         </>
       )}
       
