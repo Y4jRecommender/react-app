@@ -78,4 +78,22 @@ const editUser = async (data) => {
     }
 }
 
-export { createUser, getUserEmail, getUserID, editUser };
+const deleteUser = async (email) => {
+    const data = { email: email };
+    try {
+        const response = await fetch(`${API}/user/delete`, {
+            method: "DELETE",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        return await response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export { createUser, getUserEmail, getUserID, editUser, deleteUser };
