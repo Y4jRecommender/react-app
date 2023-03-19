@@ -10,6 +10,7 @@ import CreateUser from '../User/CreateUser';
 import DeleteUser from '../User/DeleteUser';
 import AllUserAdmin from '../User/AllUser';
 import AllJobAdmin from '../Job/AllJob';
+import CreateCorporate from '../Corporate/CreateCorporate';
 export default function AdminDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
@@ -48,11 +49,6 @@ export default function AdminDashboard() {
                 }}>All Job</Button>
               </Stack>
               <br />
-              <Stack spacing={2} direction="row">
-                <Button variant="contained" onClick={() => {
-                  setSection('createJobAdmin')
-                }}>Create a Job</Button>
-              </Stack>
             </Box>
             <br />
             <Box sx={{ flexGrow: 1 }}>
@@ -60,7 +56,7 @@ export default function AdminDashboard() {
               <Stack spacing={2} direction="row">
                 <Button variant="contained" onClick={() => {
                   setSection('createCorporateAdmin')
-                }}>Create a Corporate</Button>
+                }}>Add a Corporate</Button>
               </Stack>
               <br />
               <Stack spacing={2} direction="row">
@@ -96,10 +92,16 @@ export default function AdminDashboard() {
       {/* all job admin */}
       {section === "allJobAdmin" && (
         <>
-         <AllJobAdmin />
-         </>
+          <AllJobAdmin />
+        </>
       )}
-      
+
+      {/* create corporate admin */}
+      {section === "createCorporateAdmin" && (
+        <>
+          <CreateCorporate />
+        </>
+      )}
     </>
   )
 }
