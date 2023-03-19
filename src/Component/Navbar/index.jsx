@@ -62,7 +62,9 @@ export default function Navbar() {
               {role === "admin" &&
                 (<>
                   <p>Admin&nbsp;</p>
-                  {/* <Button variant="secondary" href="/admin/dashboard">DashBoard</Button> */}
+                  <Button variant="secondary" onClick={() => {
+                    setSection("home")
+                  }}>DashBoard</Button>
                 </>)
               }
               {role === "corporate" &&

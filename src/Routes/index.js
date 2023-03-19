@@ -39,9 +39,7 @@ const Routing = () => {
 
                 {auth && role === "admin" && (
                     <>
-                        <Route exact path="/admin/dashboard" element={<AdminDashBoard />} />
-                        <Route exact path="/admin/user/create" element={<CreateUser />} />
-                        <Route exact path="/admin/*" element={<AdminDashBoard />} />
+                        <Route exact path="/" element={<AdminDashBoard />} />
                     </>
                 )}
             </Routes>
