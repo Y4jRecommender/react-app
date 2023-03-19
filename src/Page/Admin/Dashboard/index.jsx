@@ -20,21 +20,48 @@ export default function AdminDashboard() {
     <>
       <Container sx={{ py: 4 }} maxWidth="xl">
         <Box sx={{ flexGrow: 1 }}>
-          
-          <p>Corporate</p>
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={() => {
-              navigate('/corporate/addjob')
-            }}>Add a job</Button>
-          </Stack>
-          <br/>
-          <p>Admin</p>
+          <p>User Settings</p>
           <Stack spacing={2} direction="row">
             <Button variant="contained" onClick={() => {
               navigate('/admin/user/create')
             }}>Create a user</Button>
           </Stack>
-
+          <br />
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => {
+              navigate('/admin/user/all')
+            }}>All User</Button>
+          </Stack>
+        </Box>
+        <br />
+        <Box sx={{ flexGrow: 1 }}>
+          <p>Job Settings</p>
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => {
+              navigate('/admin/job/all')
+            }}>All Job</Button>
+          </Stack>
+          <br />
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => {
+              navigate('/admin/user/create')
+            }}>Create a Job</Button>
+          </Stack>
+        </Box>
+        <br />
+        <Box sx={{ flexGrow: 1 }}>
+          <p>Corporate Settings</p>
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => {
+              navigate('/admin/user/create')
+            }}>Create a Corporate</Button>
+          </Stack>
+          <br />
+          <Stack spacing={2} direction="row">
+            <Button variant="contained" onClick={() => {
+              navigate('/admin/corporate/create')
+            }}>All Corporate</Button>
+          </Stack>
         </Box>
       </Container>
     </>

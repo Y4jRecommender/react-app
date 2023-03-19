@@ -11,13 +11,11 @@ const loginWithGoogle = async (token) => {
             },
             body: data
         });
-        // parse the json response
-        const json = await response.json();
-        // check if the response is ok
-        if (response.ok) {
-            // if the response is ok, return the json response
-            return json;
-        }
+        const result = {
+            status: response.status,
+            data: await response.json(),
+        };
+        return result;
     }
     catch (err) {
         console.log(err);

@@ -51,17 +51,20 @@ export default function Navbar() {
             <>
               {role === "user" &&
                 (<>
-                  <Button variant="secondary" href="/dashboard">DashBoard</Button>
+                  <p>User&nbsp;</p>
+                  {/* <Button variant="secondary" href="/dashboard">DashBoard</Button> */}
                 </>)
               }
               {role === "admin" &&
                 (<>
-                  <Button variant="secondary" href="/admin/dashboard">DashBoard</Button>
+                  <p>Admin&nbsp;</p>
+                  {/* <Button variant="secondary" href="/admin/dashboard">DashBoard</Button> */}
                 </>)
               }
               {role === "corporate" &&
                 (<>
-                  <Button variant="secondary" href="/corporate/dashboard">DashBoard</Button>
+                  <p>Corporate&nbsp;</p>
+                  {/* <Button variant="secondary" href="/corporate/dashboard">DashBoard</Button> */}
                 </>)
               }
 

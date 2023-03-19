@@ -11,20 +11,22 @@ const AuthProvider = ({ children }) => {
     const [name, setName] = useState("");
     const [user, setUser] = useState({});
     const [role, setRole] = useState("user");
-    
+
     const LoginGoogle = async (token) => {
         try {
             const res = await loginWithGoogle(token);
             if (res.status === 200) {
+                console.log(res);
                 setAuth(true);
-                setEmail(res.user.email);
+                setEmail(res.data.email);
                 setToken(token);
-                setId(res.user._id);
-                setName(res.user.name);
+                setId(res.data._id);
+                setName(res.data.name);
                 setAuth(true);
-                setUser(res.user);
-                setRole(res.user.role);
-                return (res.user);
+                setUser(res.data);
+
+                setRole(res.data.role);
+                return (res.data);
             }
         }
         catch (err) {

@@ -16,6 +16,7 @@ export default function Dashboard() {
       navigate('/');
     }
   }, [auth, navigate]);
+  
   return (
     <>
       <Container sx={{ py: 4 }} maxWidth="xl">
