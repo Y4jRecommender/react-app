@@ -50,7 +50,6 @@ export default function AdminDashboard() {
                   setSection('allJobAdmin')
                 }}>All Job</Button>
               </Stack>
-              <br />
             </Box>
             <br />
             <Box sx={{ flexGrow: 1 }}>

@@ -66,7 +66,7 @@ export default function AllCorporateAdmin() {
                 <Button
                     variant="contained"
                     onClick={() => {
-                        setSection("createCorporate");
+                        setSection("createCorporateAdmin");
                     }
                     }
                 >
