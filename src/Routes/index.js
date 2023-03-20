@@ -31,9 +31,8 @@ const Routing = () => {
 
                 {auth && role === "corporate" && (
                     <>
-                        <Route exact path="/corporate/dashboard" element={<CorporateDashboard />} />
-                        <Route exact path="/corporate/addjob" element={<AddJob />} />
-                        <Route exact path="/corporate/*" element={<CorporateDashboard />} />
+                        <Route exact path="/" element={<CorporateDashboard />} />
+                        <Route exact path="*" element={<CorporateDashboard />} />
                     </>
                 )}
 

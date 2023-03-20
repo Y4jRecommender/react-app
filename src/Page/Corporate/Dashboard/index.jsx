@@ -5,12 +5,13 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
-
+import { SectionContext } from '../../../Context/sectionContext';
+import AddJob from '../AddJob';
 export default function CorporateDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
   const navigate = useNavigate();
-
+  const { section, setSection } = useContext(SectionContext);
   useEffect(() => {
     if (!auth) {
       navigate('/');
@@ -18,25 +19,29 @@ export default function CorporateDashboard() {
   }, [auth, navigate]);
   return (
     <>
-      <Container sx={{ py: 4 }} maxWidth="xl">
-        <Box sx={{ flexGrow: 1 }}>
-          
-          <p>Corporate</p>
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={() => {
-              navigate('/corporate/addjob')
-            }}>Add a job</Button>
-          </Stack>
-          <br/>
-          <p>Admin</p>
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={() => {
-              navigate('/admin/user/create')
-            }}>Create a user</Button>
-          </Stack>
+      {section === "home" && (
+        <>
+          <Container sx={{ py: 4 }} maxWidth="xl">
+            <Box sx={{ flexGrow: 1 }}>
+              <p>Job Settings</p>
+              <Stack spacing={2} direction="row">
+                <Button variant="contained" onClick={() => {
+                  setSection('createJobCorporate')
+                }}>Create a job</Button>
+                <Button variant="contained" onClick={() => {
+                  setSection('allJobByCorporate')
+                }}>All Job Added</Button>
+              </Stack>
+            </Box>
+          </Container>
+        </>)}
 
-        </Box>
-      </Container>
+        {/* Add job */}
+        {section === "createJobCorporate" && (
+          <>
+          <AddJob/>
+          </>
+        )}
     </>
   )
 }

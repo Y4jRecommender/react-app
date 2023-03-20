@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
     const [name, setName] = useState("");
     const [user, setUser] = useState({});
     // const [role, setRole] = useState("user");
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("corporate");
 
     const LoginGoogle = async (token) => {
         try {

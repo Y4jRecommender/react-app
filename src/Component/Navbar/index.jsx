@@ -70,7 +70,10 @@ export default function Navbar() {
               {role === "corporate" &&
                 (<>
                   <p>Corporate&nbsp;</p>
-                  {/* <Button variant="secondary" href="/corporate/dashboard">DashBoard</Button> */}
+                  <Button variant="secondary" onClick={() => {
+                    setSection("home")
+                  }}
+                  >DashBoard</Button>
                 </>)
               }
 
