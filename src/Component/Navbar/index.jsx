@@ -17,7 +17,7 @@ export default function Navbar() {
   const authContext = useContext(AuthContext);
   const { name, auth, LoginGoogle, Logout, role } = authContext;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { section, setSection } = useContext(SectionContext);
+  const { setSection } = useContext(SectionContext);
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);

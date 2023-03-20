@@ -29,7 +29,7 @@ export default function CreateJobPage() {
         companyID: id,
         companyName: name,
         address: user.address,
-        corporateStatus: '',
+        corporateStatus: 'This is test status',
     });
 
     const handleChange = (event) => {
@@ -166,9 +166,9 @@ export default function CreateJobPage() {
                             onChange={handleChange}
                             label="Gender"
                         >
-                            <MenuItem value="male">Male</MenuItem>
-                            <MenuItem value="female">Female</MenuItem>
-                            <MenuItem value="other">Other</MenuItem>
+                            <MenuItem value="1">Male</MenuItem>
+                            <MenuItem value="2">Female</MenuItem>
+                            <MenuItem value="0">Other</MenuItem>
                         </Select>
                     </FormControl>
 

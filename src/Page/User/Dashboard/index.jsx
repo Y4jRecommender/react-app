@@ -11,7 +11,7 @@ export default function Dashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
   const navigate = useNavigate();
-  const { section, setSection } = useContext(SectionContext);
+  const { section } = useContext(SectionContext);
 
   useEffect(() => {
     if (!auth) {
