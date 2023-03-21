@@ -6,12 +6,13 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
-import ProfilePage from '../Profile';
+import AllJobUser from '../Job/AllJob';
+
 export default function Dashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
   const navigate = useNavigate();
-  const { section } = useContext(SectionContext);
+  const { section, setSection } = useContext(SectionContext);
 
   useEffect(() => {
     if (!auth) {
@@ -27,27 +28,19 @@ export default function Dashboard() {
         <Container sx={{ py: 4 }} maxWidth="xl">
           <Box sx={{ flexGrow: 1 }}>
 
-            <p>Corporate</p>
+            <p>Jobs</p>
             <Stack spacing={2} direction="row">
               <Button variant="contained" onClick={() => {
-                navigate('/corporate/addjob')
-              }}>Add a job</Button>
+                setSection('allJobUser');
+              }}>All Jobs</Button>
             </Stack>
-            <br />
-            <p>Admin</p>
-            <Stack spacing={2} direction="row">
-              <Button variant="contained" onClick={() => {
-                navigate('/admin/user/create')
-              }}>Create a user</Button>
-            </Stack>
-
           </Box>
         </Container>
       )}
 
-      {/* If the section is profile */}
-      {section === "profile" && (
-        <ProfilePage />
+      {/* If the section is allJobUser */}
+      {section === "allJobUser" && (
+        <AllJobUser />
       )}
     </>
   )

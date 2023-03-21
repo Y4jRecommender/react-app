@@ -4,8 +4,8 @@ import { loginWithGoogle } from "../API/auth";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState(false);
-    // const [auth, setAuth] = useState(true);
+    // const [auth, setAuth] = useState(false);
+    const [auth, setAuth] = useState(true);
     const [email, setEmail] = useState("");
     const [token, setToken] = useState("");
     const [id, setId] = useState("");
