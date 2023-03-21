@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Button, Container, Box } from "@mui/material";
 import { deleteJob } from "../../../../API/job";
 import { getAllJobs } from "../../../../API/job";
+import JobModalAdmin from "../JobModel";
+import { Stack } from "@mui/system";
 export default function AllJobAdmin() {
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
@@ -47,15 +49,18 @@ export default function AllJobAdmin() {
                                     <td>{job.companyName}</td>
                                     <td>{job.companyID}</td>
                                     <td>
-                                        <Button
-                                            variant="contained"
-                                            onClick={() => {
-                                                handleDelete(job._id);
-                                            }
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
+                                        <Stack spacing={1} direction="row">
+                                            <Button
+                                                variant="contained"
+                                                onClick={() => {
+                                                    handleDelete(job._id);
+                                                }
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+                                            <JobModalAdmin job={job} />
+                                        </Stack>
                                     </td>
                                 </tr>
                             ))}

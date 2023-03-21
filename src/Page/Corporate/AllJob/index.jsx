@@ -3,7 +3,8 @@ import { Button, Container, Box } from "@mui/material";
 import { getAllJobs } from "../../../API/corporate";
 import { deleteJob } from "../../../API/job";
 import { AuthContext } from "../../../Context/authContext";
-
+import JobModelCorporate from "../JobModel";
+import { Stack } from "@mui/system";
 export default function AllJobCorporate() {
     const [jobs, setJobs] = useState([]);
     const { id } = useContext(AuthContext);
@@ -49,15 +50,19 @@ export default function AllJobCorporate() {
                                     <td >{job.jobType}</td>
                                     <td>{job.endDate}</td>
                                     <td>
-                                        <Button
-                                            variant="contained"
-                                            onClick={() => {
-                                                handleDelete(job._id);
-                                            }
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
+                                        <Stack spacing={2} direction="row">
+                                            <Button
+                                                variant="contained"
+                                                onClick={() => {
+                                                    handleDelete(job._id);
+                                                }
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+
+                                            <JobModelCorporate job={job} />
+                                        </Stack>
                                     </td>
                                 </tr>
                             ))}

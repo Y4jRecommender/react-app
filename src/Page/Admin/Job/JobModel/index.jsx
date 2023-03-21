@@ -18,7 +18,7 @@ const style = {
     overflowY: "scroll",
 };
 
-export default function JobModalUser(jobs) {
+export default function JobModalAdmin(jobs) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
