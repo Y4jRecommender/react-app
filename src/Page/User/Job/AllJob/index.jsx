@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button, Container, Box } from "@mui/material";
-import { deleteJob } from "../../../../API/job";
+import { Container, Box } from "@mui/material";
 import { getAllJobs } from "../../../../API/job";
+import JobModalUser from "../JobModel";
 export default function AllJobUser() {
     const [jobs, setJobs] = useState([]);
     useEffect(() => {
@@ -12,15 +12,6 @@ export default function AllJobUser() {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    const handleDelete = (id) => {
-        const result = deleteJob(id);
-        result.then((res) => {
-            if (res.status === 200) {
-                alert("Job Deleted");
-                setJobs(jobs.filter((job) => job._id !== id));
-            }
-        });
-    };
     return (
         <>
             <Container sx={{ py: 4 }} maxWidth="xl">
@@ -34,7 +25,7 @@ export default function AllJobUser() {
                                 <th width="10%">Job Location</th>
                                 <th width="10%">Company Name</th>
                                 <th width="20%">Company Id</th>
-                                {/* <th width="20%">Action</th> */}
+                                <th width="20%">Action</th>
                             </tr>
                         </thead>
 
@@ -46,6 +37,9 @@ export default function AllJobUser() {
                                     <td >{job.jobLocation}</td>
                                     <td>{job.companyName}</td>
                                     <td>{job.companyID}</td>
+                                    <td>
+                                        <JobModalUser job={job} />
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
