@@ -113,4 +113,22 @@ const getAllCorporates = async () => {
     }
 }
 
-export { createCorporate, getCorporateEmail, getCorporateID, editCorporate, deleteCorporate, getAllCorporates };
+// get all jobs created by a corporate
+const getAllJobs = async (id) => {
+    try {
+        const response = await fetch(`${API}/corporate/jobs/${id}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        });
+        return await response.json();
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
+export { createCorporate, getCorporateEmail, getCorporateID, editCorporate, deleteCorporate, getAllCorporates, getAllJobs };

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
 import AddJob from '../AddJob';
+import AllJobCorporate from '../AllJob';
 export default function CorporateDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
@@ -36,12 +37,20 @@ export default function CorporateDashboard() {
           </Container>
         </>)}
 
-        {/* Add job */}
-        {section === "createJobCorporate" && (
-          <>
-          <AddJob/>
-          </>
-        )}
+      {/* Add job */}
+      {section === "createJobCorporate" && (
+        <>
+          <AddJob />
+        </>
+      )}
+
+      {/* All job */}
+      {section === "allJobByCorporate" && (
+        <>
+          <AllJobCorporate />
+        </>
+      )}
+      
     </>
   )
 }

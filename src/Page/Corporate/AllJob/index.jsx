@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Container, Box } from "@mui/material";
-import { deleteJob } from "../../../../API/job";
-import { getAllJobs } from "../../../../API/job";
+import { getAllJobs } from "../../../API/corporate";
+import { deleteJob } from "../../../API/job";
+import { AuthContext } from "../../../Context/authContext";
+
 export default function AllJobCorporate() {
     const [jobs, setJobs] = useState([]);
+    const { id } = useContext(AuthContext);
     useEffect(() => {
-        // call the api to get all the jobs
-        const result = getAllJobs();
+        console.log(id);
+        const result = getAllJobs(id);
         result.then((res) => {
             setJobs(res.jobs);
         });
+        console.log(jobs);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     const handleDelete = (id) => {
@@ -29,11 +33,10 @@ export default function AllJobCorporate() {
                     <table border="1">
                         <thead>
                             <tr>
-                                <th width="10%">Job ID</th>
                                 <th width="30%">Job Title</th>
-                                <th width="10%">Job Location</th>
-                                <th width="10%">Company Name</th>
-                                <th width="20%">Company Id</th>
+                                <th width="10%">Job Code</th>
+                                <th width="10%">Job Type</th>
+                                <th width="20%">End Date</th>
                                 <th width="20%">Action</th>
                             </tr>
                         </thead>
@@ -41,11 +44,10 @@ export default function AllJobCorporate() {
                         <tbody>
                             {jobs.map((job) => (
                                 <tr key={job.__id}>
-                                    <td >{job._id}</td>
                                     <td >{job.jobTitle}</td>
-                                    <td >{job.jobLocation}</td>
-                                    <td>{job.companyName}</td>
-                                    <td>{job.companyID}</td>
+                                    <td >{job.jobCode}</td>
+                                    <td >{job.jobType}</td>
+                                    <td>{job.endDate}</td>
                                     <td>
                                         <Button
                                             variant="contained"
