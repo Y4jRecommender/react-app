@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import { Container } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
 import AllJobUser from '../Job/AllJob';
+import ProfilePage from '../Profile';
 
 export default function Dashboard() {
   const authContext = useContext(AuthContext);
@@ -33,6 +34,9 @@ export default function Dashboard() {
               <Button variant="contained" onClick={() => {
                 setSection('allJobUser');
               }}>All Jobs</Button>
+              <Button variant="contained" onClick={() => {
+                setSection('profile');
+              }}>My Profile</Button>
             </Stack>
           </Box>
         </Container>
@@ -41,6 +45,11 @@ export default function Dashboard() {
       {/* If the section is allJobUser */}
       {section === "allJobUser" && (
         <AllJobUser />
+      )}
+
+      {/* my profile */}
+      {section === "profile" && (
+        <ProfilePage />
       )}
     </>
   )
