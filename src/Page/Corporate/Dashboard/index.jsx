@@ -8,6 +8,8 @@ import { Container } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
 import AddJob from '../AddJob';
 import AllJobCorporate from '../AllJob';
+import CorporateProfile from '../Profile';
+
 export default function CorporateDashboard() {
   const authContext = useContext(AuthContext);
   const { auth } = authContext;
@@ -33,6 +35,13 @@ export default function CorporateDashboard() {
                   setSection('allJobByCorporate')
                 }}>All Job Added</Button>
               </Stack>
+
+              <p>Profile Settings</p>
+              <Stack spacing={2} direction="row">
+                <Button variant="contained" onClick={() => {
+                  setSection('profile')
+                }}>Edit Profile</Button>
+              </Stack>
             </Box>
           </Container>
         </>)}
@@ -50,7 +59,14 @@ export default function CorporateDashboard() {
           <AllJobCorporate />
         </>
       )}
-      
+
+      {/* Edit Profile */}
+      {section === "profile" && (
+        <>
+          <CorporateProfile />
+        </>
+      )}
+
     </>
   )
 }
