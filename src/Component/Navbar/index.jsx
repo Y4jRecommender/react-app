@@ -103,10 +103,12 @@ export default function Navbar() {
                   open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={() => {
-                    setSection("profile")
-                    handleClose()
-                  }}>Profile</MenuItem>
+                  {role !== "admin" && (
+                    <MenuItem onClick={() => {
+                      setSection("profile")
+                      handleClose()
+                    }}>Profile</MenuItem>
+                  )}
                   <MenuItem onClick={() => {
                     Logout()
                     handleClose()
