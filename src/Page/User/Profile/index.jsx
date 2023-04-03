@@ -137,15 +137,15 @@ const ProfilePage = () => {
                                 <Select name="religionId" value={user.religionId} onChange={(e) => {
                                     setUser({ ...user, religionId: e.target.value })
                                 }}>
-                                    <MenuItem value="1">Hindu</MenuItem>
-                                    <MenuItem value="2">Muslim</MenuItem>
-                                    <MenuItem value="3">Christian</MenuItem>
-                                    <MenuItem value="4">Sikh</MenuItem>
-                                    <MenuItem value="5">Buddhist</MenuItem>
-                                    <MenuItem value="6">Jain</MenuItem>
-                                    <MenuItem value="7">Parsi</MenuItem>
-                                    <MenuItem value="8">Jewish</MenuItem>
-                                    <MenuItem value="9">Other</MenuItem>
+                                    <MenuItem value="Hindu">Hindu</MenuItem>
+                                    <MenuItem value="Muslim">Muslim</MenuItem>
+                                    <MenuItem value="Christian">Christian</MenuItem>
+                                    <MenuItem value="Sikh">Sikh</MenuItem>
+                                    <MenuItem value="Buddhist">Buddhist</MenuItem>
+                                    <MenuItem value="Buddhist">Jain</MenuItem>
+                                    <MenuItem value="Parsi">Parsi</MenuItem>
+                                    <MenuItem value="Jewish">Jewish</MenuItem>
+                                    <MenuItem value="Other">Other</MenuItem>
                                 </Select>
                             </FormControl>
 

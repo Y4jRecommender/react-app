@@ -1,4 +1,4 @@
-import React, { useState , useContext} from "react";
+import React, { useState, useContext } from "react";
 import { TextField, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material";
 import { createUser } from "../../API/user";
 import { SectionContext } from "../../Context/sectionContext";
@@ -89,9 +89,9 @@ export default function CreateUserForm() {
                     onChange={handleChange}
                     label="Gender"
                 >
-                    <MenuItem value="male">Male</MenuItem>
-                    <MenuItem value="female">Female</MenuItem>
-                    <MenuItem value="other">Other</MenuItem>
+                    <MenuItem value="1">Male</MenuItem>
+                    <MenuItem value="2">Female</MenuItem>
+                    <MenuItem value="3">Other</MenuItem>
                 </Select>
             </FormControl>
             <TextField
@@ -112,9 +112,11 @@ export default function CreateUserForm() {
                     onChange={handleChange}
                     label="Social Category"
                 >
-                    <MenuItem value="1">Category 1</MenuItem>
-                    <MenuItem value="2">Category 2</MenuItem>
-                    <MenuItem value="3">Category 3</MenuItem>
+                    <MenuItem value="1">General</MenuItem>
+                    <MenuItem value="2">OBC</MenuItem>
+                    <MenuItem value="3">SC</MenuItem>
+                    <MenuItem value="4">ST</MenuItem>
+                    <MenuItem value="5">EWS</MenuItem>
                 </Select>
             </FormControl>
             <FormControl variant="outlined" margin="normal" fullWidth>
@@ -125,21 +127,49 @@ export default function CreateUserForm() {
                     onChange={handleChange}
                     label="State"
                 >
-                    <MenuItem value="1">State 1</MenuItem>
-                    <MenuItem value="2">State 2</MenuItem>
-                    <MenuItem value="3">State 3</MenuItem>
+                    <MenuItem value="1">Andaman and Nicobar Islands</MenuItem>
+                    <MenuItem value="2">Andhra Pradesh</MenuItem>
+                    <MenuItem value="3">Arunachal Pradesh</MenuItem>
+                    <MenuItem value="4">Assam</MenuItem>
+                    <MenuItem value="5">Bihar</MenuItem>
+                    <MenuItem value="6">Chandigarh</MenuItem>
+                    <MenuItem value="7">Chhattisgarh</MenuItem>
+                    <MenuItem value="8">Dadra and Nagar Haveli</MenuItem>
+                    <MenuItem value="37">Daman and Diu</MenuItem>
+                    <MenuItem value="9">Delhi</MenuItem>
+                    <MenuItem value="10">Goa</MenuItem>
+                    <MenuItem value="11">Gujarat</MenuItem>
+                    <MenuItem value="12">Haryana</MenuItem>
+                    <MenuItem value="13">Himachal Pradesh</MenuItem>
+                    <MenuItem value="14">Jammu and Kashmir</MenuItem>
+                    <MenuItem value="15">Jharkhand</MenuItem>
+                    <MenuItem value="16">Karnataka</MenuItem>
+                    <MenuItem value="17">Kerala</MenuItem>
+                    <MenuItem value="18">Ladakh</MenuItem>
+                    <MenuItem value="19">Lakshadweep</MenuItem>
+                    <MenuItem value="20">Madhya Pradesh</MenuItem>
+                    <MenuItem value="21">Maharashtra</MenuItem>
+                    <MenuItem value="22">Manipur</MenuItem>
+                    <MenuItem value="23">Meghalaya</MenuItem>
+                    <MenuItem value="24">Mizoram</MenuItem>
+                    <MenuItem value="25">Nagaland</MenuItem>
+                    <MenuItem value="26">Odisha</MenuItem>
+                    <MenuItem value="27">Puducherry</MenuItem>
+                    <MenuItem value="28">Punjab</MenuItem>
+                    <MenuItem value="29">Rajasthan</MenuItem>
+                    <MenuItem value="30">Sikkim</MenuItem>
+                    <MenuItem value="31">Tamil Nadu</MenuItem>
+                    <MenuItem value="32">Telangana</MenuItem>
+                    <MenuItem value="33">Tripura</MenuItem>
+                    <MenuItem value="34">Uttar Pradesh</MenuItem>
+                    <MenuItem value="35">Uttarakhand</MenuItem>
+                    <MenuItem value="36">West Bengal</MenuItem>
                     );
                 </Select>
             </FormControl>
-            <TextField
-                label="Religion"
-                variant="outlined"
-                margin="normal"
-                name="religion"
-                value={formData.religion}
-                onChange={handleChange}
-                fullWidth
-            />
+            
+            {/* Religion */}
+            
             <FormControl variant="outlined" margin="normal" fullWidth>
                 <InputLabel>Disability Type</InputLabel>
                 <Select

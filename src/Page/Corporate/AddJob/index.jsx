@@ -29,7 +29,7 @@ export default function CreateJobPage() {
         companyID: id,
         companyName: name,
         address: user.address,
-        corporateStatus: 'This is test status',
+        corporateStatus: 1,
     });
 
     const handleChange = (event) => {
