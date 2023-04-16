@@ -17,7 +17,15 @@ export default function Translation() {
     const textChange = (event, newAlignment) => {
         setText(newAlignment);
         setLan("hi");
+        setResult("");
     };
+
+    const genderChange = (event) => {
+        setGender(event.target.value);
+        setLan("hi");
+        setResult("");
+    };
+
     const lanChange = (event) => {
         setLan(event.target.value);
     };
@@ -98,6 +106,18 @@ export default function Translation() {
                                 >
                                     <ToggleButton value={true}>Text</ToggleButton>
                                     <ToggleButton value={false}>Speech</ToggleButton>
+                                </ToggleButtonGroup>
+
+                                <ToggleButtonGroup
+                                    color="primary"
+                                    value={gender}
+                                    exclusive
+                                    onChange={genderChange}
+                                    aria-label="Platform"
+                                    sx={{ mt: 2, ml: 3 }}
+                                >
+                                    <ToggleButton value="male">Male</ToggleButton>
+                                    <ToggleButton value="female">Female</ToggleButton>
                                 </ToggleButtonGroup>
 
                             </Grid>
