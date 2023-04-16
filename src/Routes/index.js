@@ -7,12 +7,16 @@ import CorporateDashboard from "../Page/Corporate/Dashboard";
 import AdminDashBoard from "../Page/Admin/Dashboard";
 import CreateUser from "../Page/Admin/User/CreateUser";
 import { AuthContext } from "../Context/authContext";
+import Translation from "../Page/Translation";
 const Routing = () => {
     const { auth, role } = useContext(AuthContext);
     return (
 
         <BrowserRouter>
             <Routes>
+
+                <Route exact path="/translation" element={<Translation />} />
+
                 {/* Public Routes */}
                 {!auth && (
                     <>
