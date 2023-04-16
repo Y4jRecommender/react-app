@@ -41,8 +41,15 @@ export default function Navbar() {
             Y4J
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Button variant="secondary" onClick={() => {
+               window.location.href = "/translation"
+            }}>Translations</Button>
+          </Typography>
+
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {name} &nbsp;
           </Typography>
+
           {/* Login Button */}
           {!auth && (
             <Button variant="secondary" onClick={() => {
