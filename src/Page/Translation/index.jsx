@@ -1,5 +1,5 @@
 import { React, useState } from 'react'
-import { Box, Grid, Typography, TextField, Container, ToggleButton, ToggleButtonGroup, Select, MenuItem, Button } from '@mui/material'
+import { Box, Grid, Typography, TextField, Container, ToggleButton, ToggleButtonGroup, Select, MenuItem, Button, Stack } from '@mui/material'
 import { getTranslation, transliterate } from '../../API/translation';
 import CircularProgress from "@mui/material/CircularProgress";
 export default function Translation() {
@@ -16,13 +16,11 @@ export default function Translation() {
 
     const textChange = (event, newAlignment) => {
         setText(newAlignment);
-        setLan("hi");
         setResult("");
     };
 
     const genderChange = (event) => {
         setGender(event.target.value);
-        setLan("hi");
         setResult("");
     };
 
@@ -97,7 +95,7 @@ export default function Translation() {
                                 </Typography>
 
                                 <ToggleButtonGroup
-                                    color="primary"
+                                    color="standard"
                                     value={text}
                                     exclusive
                                     onChange={textChange}
@@ -108,18 +106,19 @@ export default function Translation() {
                                     <ToggleButton value={false}>Speech</ToggleButton>
                                 </ToggleButtonGroup>
 
-                                <ToggleButtonGroup
-                                    color="primary"
-                                    value={gender}
-                                    exclusive
-                                    onChange={genderChange}
-                                    aria-label="Platform"
-                                    sx={{ mt: 2, ml: 3 }}
-                                >
-                                    <ToggleButton value="male">Male</ToggleButton>
-                                    <ToggleButton value="female">Female</ToggleButton>
-                                </ToggleButtonGroup>
-
+                                {!text &&
+                                    <ToggleButtonGroup
+                                        color="standard"
+                                        value={gender}
+                                        exclusive
+                                        onChange={genderChange}
+                                        aria-label="Platform"
+                                        sx={{ mt: 2, ml: 3 }}
+                                    >
+                                        <ToggleButton value="male">Male</ToggleButton>
+                                        <ToggleButton value="female">Female</ToggleButton>
+                                    </ToggleButtonGroup>
+                                }
                             </Grid>
                             <Grid item xs={5} sx={{ mt: 4 }}>
                                 <Typography variant="h6" component="div" sx={{ flexGrow: 1, mb: 3, textAlign: 'center' }}>
@@ -211,16 +210,18 @@ export default function Translation() {
                                 </>}
 
                                 {!text && <>
-                                    <TextField
-                                        id="outlined-multiline-flexible"
-                                        label="BASE 64 Encoded Audio"
-                                        multiline
-                                        maxRows={4}
-                                        fullWidth
-                                        value={result}
-                                    />
-
-                                    <Button variant="contained" onClick={copyToClipboard} sx={{ mt: 2 }}>Copy to Clipboard</Button>
+                                    <Stack spacing={2} direction="row" sx={{ width: '100%' }}>
+                                        {/* Convert the result(base64) and play it as audio */}
+                                        <audio controls >
+                                            <source src={`data:audio/mp3;base64,${result}`} type="audio/mp3" />
+                                        </audio>
+                                        <Button variant="contained" onClick={() => {
+                                            var link = document.createElement('a');
+                                            link.href = `data:audio/mp3;base64,${result}`;
+                                            link.download = 'audio.mp3';
+                                            link.click();
+                                        }} sx={{ mt: 2 }} >Download</Button>
+                                    </Stack>
                                 </>}
                             </Grid>
                         </Grid>
