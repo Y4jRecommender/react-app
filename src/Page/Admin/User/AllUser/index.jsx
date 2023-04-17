@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Button, Container, Box, Typography, Stack } from "@mui/material";
-import { deleteUser } from "../../../../API/user";
+import { deleteUser, getAllUsers } from "../../../../API/user";
 import { SectionContext } from "../../../../Context/sectionContext";
-import { getAllUsers } from "../../../../API/user";
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

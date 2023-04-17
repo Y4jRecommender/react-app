@@ -1,6 +1,6 @@
 import { React, useState, useContext } from 'react';
 import Box from '@mui/material/Box';
-import { Container, TextField, Button } from '@mui/material';
+import { Container, TextField, Button, Typography } from '@mui/material';
 import { SectionContext } from '../../../../Context/sectionContext';
 import { createCorporate } from '../../../../API/corporate';
 
@@ -34,9 +34,12 @@ export default function CreateCorporate() {
 
     return (
         <>
-            <Container sx={{ py: 4 }} maxWidth="xl">
-                <Box sx={{ flexGrow: 1 }}>
-                    <h2>Create Corporate</h2>
+            <Container maxWidth="md">
+                <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
+                    <br />
+                    Create New Corporate
+                </Typography>
+                <Box sx={{ flexGrow: 1, pb: 5 }}>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             label="Name"
@@ -68,6 +71,7 @@ export default function CreateCorporate() {
                             onChange={handleChange}
                             type="text"
                             fullWidth
+                            required
                         />
                         <TextField
                             label="Address"

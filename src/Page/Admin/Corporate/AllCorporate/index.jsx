@@ -1,8 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Button, Container, Box } from "@mui/material";
-import { deleteCorporate } from "../../../../API/corporate";
+import { Button, Container, Box, Typography } from "@mui/material";
+import { deleteCorporate, getAllCorporates } from "../../../../API/corporate";
 import { SectionContext } from "../../../../Context/sectionContext";
-import { getAllCorporates } from "../../../../API/corporate";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+
 export default function AllCorporateAdmin() {
     const { setSection } = useContext(SectionContext);
     const [corporate, setCorporates] = useState([]);
@@ -25,42 +32,51 @@ export default function AllCorporateAdmin() {
     };
     return (
         <>
-            <Container sx={{ py: 4 }} maxWidth="xl">
-                <Box sx={{ flexGrow: 1 }}>
-                    <p>All Corporates</p>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th width="10%">Id</th>
-                                <th width="30%">Name</th>
-                                <th width="30%">Email</th>
-                                <th width="10%">Website</th>
-                                <th width="20%">Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {corporate.map((corporate) => (
-                                <tr key={corporate.__id}>
-                                    <td >{corporate._id}</td>
-                                    <td >{corporate.name}</td>
-                                    <td >{corporate.email}</td>
-                                    <td>{corporate.website}</td>
-                                    <td>
-                                        <Button
-                                            variant="contained"
-                                            onClick={() => {
-                                                handleDelete(corporate.email);
-                                            }
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+            <Container maxWidth="xl">
+                <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
+                    <br />
+                    All Corporates
+                </Typography>
+                <Box sx={{ flexGcorporate: 1, textAlign: 'center' }}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Corporate ID</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Website</TableCell>
+                                    <TableCell>Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {corporate.map((corporate) => (
+                                    <TableRow
+                                        key={corporate.__id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="corporate">
+                                            {corporate._id}
+                                        </TableCell>
+                                        <TableCell>{corporate.name}</TableCell>
+                                        <TableCell>{corporate.email}</TableCell>
+                                        <TableCell>{corporate.website}</TableCell>
+                                        <TableCell>
+                                            <Button
+                                                variant="contained"
+                                                onClick={() => {
+                                                    handleDelete(corporate.email);
+                                                }
+                                                }
+                                            >
+                                                Delete
+                                            </Button>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
                 </Box>
                 <br />
                 <Button
