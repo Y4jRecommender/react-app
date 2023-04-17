@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Container, Box } from '@mui/material';
+import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Container, Box, Typography } from '@mui/material';
 import { createJob } from '../../../API/job';
 import { SectionContext } from '../../../Context/sectionContext';
 import { AuthContext } from '../../../Context/authContext';
@@ -48,10 +48,13 @@ export default function CreateJobPage() {
     };
 
     return (
-        <Container sx={{ py: 4 }} maxWidth="xl">
+        <Container maxWidth="sm">
+            <Typography variant="h5" component="h5" gutterBottom>
+                <br />
+                Create New Job
+            </Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <form onSubmit={handleSubmit}>
-                    <h2>Create New Job</h2>
                     <TextField
                         name="jobCode"
                         label="Job Code"
@@ -79,6 +82,8 @@ export default function CreateJobPage() {
                         onChange={handleChange}
                         required
                         fullWidth
+                        multiline
+                        maxRows={5}
                         variant="outlined"
                         margin="normal"
                     />
@@ -86,10 +91,10 @@ export default function CreateJobPage() {
                     <FormControl variant="outlined" margin="normal" fullWidth>
                         <InputLabel id="jobTypeLabel">Job Type</InputLabel>
                         <Select labelId="jobTypeLabel" name="jobType" value={formData.jobType} onChange={handleChange}>
-                            <MenuItem value={1}>Type 1</MenuItem>
-                            <MenuItem value={2}>Type 2</MenuItem>
-                            <MenuItem value={3}>Type 3</MenuItem>
-                            <MenuItem value={12}>Type 12</MenuItem>
+                            <MenuItem value={1}>Software Development</MenuItem>
+                            <MenuItem value={2}>Human Resource</MenuItem>
+                            <MenuItem value={3}>Management Roles</MenuItem>
+                            <MenuItem value={4}>Marketing</MenuItem>
                         </Select>
                     </FormControl>
 
@@ -100,6 +105,7 @@ export default function CreateJobPage() {
                         onChange={handleChange}
                         required
                         fullWidth
+                        type="number"
                         variant="outlined"
                         margin="normal"
                     />

@@ -1,8 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
-import { TextField, Button, Container, Box } from "@mui/material";
+import { Button, Container, Box, Typography, Stack } from "@mui/material";
 import { deleteUser } from "../../../../API/user";
 import { SectionContext } from "../../../../Context/sectionContext";
 import { getAllUsers } from "../../../../API/user";
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import UserDataBox from "../../../../Component/UserDataBox";
+
 export default function AllUserAdmin() {
     const { setSection } = useContext(SectionContext);
     const [users, setUsers] = useState([]);
@@ -19,54 +29,66 @@ export default function AllUserAdmin() {
         result.then((res) => {
             if (res.status === 200) {
                 alert("User Deleted");
-                setUsers(users.filter((user) => user.email !== email));
+                setUsers(users.filter((user) => user.Email !== email));
             }
         });
     };
+
     return (
         <>
-            <Container sx={{ py: 4 }} maxWidth="xl">
-                <Box sx={{ flexGrow: 1 }}>
-                    <p>All Users</p>
-                    <table border="1">
-                        <thead>
-                            <tr>
-                                <th width="10%">Id</th>
-                                <th width="30%">Name</th>
-                                <th width="30%">Email</th>
-                                <th width="10%">Age</th>
-                                <th width="20%">Action</th>
-                            </tr>
-                        </thead>
+            <Container maxWidth="xl">
+                <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
+                    <br />
+                    All Users
+                </Typography>
+                <Box sx={{ flexGrow: 1, textAlign: 'center' }}>
+                    <TableContainer component={Paper}>
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Candidate ID</TableCell>
+                                    <TableCell>Name</TableCell>
+                                    <TableCell>Email</TableCell>
+                                    <TableCell>Action</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {users.map((row) => (
+                                    <TableRow
+                                        key={row.__id}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row">
+                                            {row.CandidateId}
+                                        </TableCell>
+                                        <TableCell>{row.CandidateName}</TableCell>
+                                        <TableCell>{row.Email}</TableCell>
 
-                        <tbody>
-                            {users.map((user) => (
-                                <tr key={user.__id}>
-                                    <td >{user._id}</td>
-                                    <td >{user.name}</td>
-                                    <td >{user.email}</td>
-                                    <td>{user.age}</td>
-                                    <td>
-                                        <Button
-                                            variant="contained"
-                                            onClick={() => {
-                                                handleDelete(user.email);
-                                            }
-                                            }
-                                        >
-                                            Delete
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                        <TableCell>
+                                            <Stack direction="row" spacing={2}>
+                                                <Button
+                                                    variant="contained"
+                                                    onClick={() => {
+                                                        handleDelete(row.Email);
+                                                    }}
+                                                >
+                                                    Delete
+                                                </Button>
+                                                <UserDataBox data={row} />
+                                            </Stack>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+
                 </Box>
                 <br />
                 <Button
                     variant="contained"
                     onClick={() => {
-                        setSection("createUser");
+                        setSection("createUserAdmin");
                     }
                     }
                 >

@@ -2,15 +2,19 @@
 // Path: src\Component\Job\index.jsx
 import { React } from 'react';
 import Box from '@mui/material/Box';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import CreateUserForm from '../../../../Component/CreateUserForm';
 
 export default function CreateUser() {
 
     return (
         <>
-            <Container sx={{ py: 4 }} maxWidth="xl">
-                <Box sx={{ flexGrow: 1 }}>
+            <Container maxWidth="md">
+                <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
+                    <br />
+                    Create New User
+                </Typography>
+                <Box sx={{ flexGrow: 1, pb: 5 }}>
                     <CreateUserForm />
                 </Box>
             </Container>

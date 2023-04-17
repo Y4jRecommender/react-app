@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { TextField, Button, Container, Box } from "@mui/material";
+import { TextField, Button, Container, Box, Typography } from "@mui/material";
 import { deleteUser } from "../../../../API/user";
 import { SectionContext } from "../../../../Context/sectionContext";
 
@@ -22,11 +22,13 @@ export default function DeleteUser() {
     };
 
     return (
-        <Container sx={{ py: 4 }} maxWidth="xl">
+        <Container maxWidth="md">
+            <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
+                <br />
+                Delete User
+            </Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <form onSubmit={handleSubmit}>
-                    {/* Heading */}
-                    <h2>Delete User</h2>
                     <TextField
                         label="Email"
                         variant="outlined"
@@ -35,8 +37,9 @@ export default function DeleteUser() {
                         value={email}
                         onChange={handleChange}
                         required
+                        fullWidth
                     />
-                    <br/> <br/>
+                    <br /> <br />
                     <Button type="submit" variant="contained" color="primary">
                         Delete User
                     </Button>
