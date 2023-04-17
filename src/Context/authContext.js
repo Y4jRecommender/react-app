@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
     const [id, setId] = useState("");
     const [name, setName] = useState("");
     const [user, setUser] = useState({});
-    const [role, setRole] = useState("admin");
+    const [role, setRole] = useState("user");
 
     const LoginGoogle = async (token) => {
         try {

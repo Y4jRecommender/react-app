@@ -25,7 +25,7 @@ export default function JobModalUser(jobs) {
 
     return (
         <div>
-            <Button onClick={handleOpen} variant="contained">View Details</Button>
+            <Button onClick={handleOpen}>View Details</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
