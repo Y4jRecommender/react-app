@@ -68,17 +68,6 @@ export default function Dashboard() {
               </Grid>
 
             </Grid>
-
-            <Typography variant="h5" component="h5" gutterBottom sx={{ py: 2 }}>
-              <br />
-              Settings
-            </Typography>
-
-            <Stack spacing={2} direction="row">
-              <Button variant="contained" onClick={() => {
-                setSection('profile');
-              }}>My Profile</Button>
-            </Stack>
           </Box>
         </Container>
       )}
