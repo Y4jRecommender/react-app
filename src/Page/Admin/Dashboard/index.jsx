@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import { SectionContext } from '../../../Context/sectionContext';
 import CreateUser from '../User/CreateUser';
 import DeleteUser from '../User/DeleteUser';
@@ -29,7 +29,9 @@ export default function AdminDashboard() {
         <>
           <Container sx={{ py: 4 }} maxWidth="xl">
             <Box sx={{ flexGrow: 1 }}>
-              <p>User Settings</p>
+              <Typography variant="h6" component="h6" gutterBottom sx={{ pt: 2 }}>
+                User Settings
+              </Typography>
               <Stack spacing={2} direction="row">
                 <Button variant="contained" onClick={() => {
                   setSection('createUserAdmin');
@@ -44,7 +46,9 @@ export default function AdminDashboard() {
             </Box>
             <br />
             <Box sx={{ flexGrow: 1 }}>
-              <p>Job Settings</p>
+              <Typography variant="h6" component="h6" gutterBottom sx={{ pt: 2 }}>
+                Job Settings
+              </Typography>
               <Stack spacing={2} direction="row">
                 <Button variant="contained" onClick={() => {
                   setSection('allJobAdmin')
@@ -53,7 +57,9 @@ export default function AdminDashboard() {
             </Box>
             <br />
             <Box sx={{ flexGrow: 1 }}>
-              <p>Corporate Settings</p>
+              <Typography variant="h6" component="h6" gutterBottom sx={{ pt: 2 }}>
+                Corporate Settings
+              </Typography>
               <Stack spacing={2} direction="row">
                 <Button variant="contained" onClick={() => {
                   setSection('createCorporateAdmin')
