@@ -10,11 +10,7 @@ const createJob = async (data) => {
             },
             body: JSON.stringify(data),
         });
-
-        // If the response 200, then alert the job that the account was created and redirect to the dashboard
-        if (response.status === 201) {
-            window.alert("Account created successfully");
-        }
+        
         const result = {
             status: response.status,
             data: await response.json(),
@@ -29,7 +25,7 @@ const createJob = async (data) => {
 
 const getJobID = async (id) => {
     try {
-        const response = await fetch(`${API}/job/id/`, {
+        const response = await fetch(`${API}/job/${id}/`, {
             method: "GET",
             headers: {
                 Accept: "application/json",
@@ -62,7 +58,7 @@ const editJob = async (data) => {
 }
 
 const deleteJob = async (id) => {
-    const data = { id: id };
+    const data = { _id: id };
     try {
         const response = await fetch(`${API}/job/delete`, {
             method: "DELETE",
@@ -100,4 +96,26 @@ const getAllJobs = async () => {
     }
 }
 
-export { createJob, getJobID, editJob, deleteJob, getAllJobs };
+// get all jobs by company id
+const getAllJobsByCompanyID = async (id) => {
+    try {
+        const response = await fetch(`${API}/job/corporate?companyId=${id}`, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+        });
+
+        const result = {
+            status: response.status,
+            data: await response.json(),
+        }
+        return result;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+export { createJob, getJobID, editJob, deleteJob, getAllJobs, getAllJobsByCompanyID };

@@ -58,23 +58,19 @@ export default function JobModalAdmin(jobs) {
 
                                 <div>
                                     Company Id:
-                                    {jobs.job.companyID}
-                                </div>
-
-                                <div>
-                                    Job Code:
-                                    {jobs.job.jobCode}
+                                    {jobs.job.companyId}
                                 </div>
 
                                 <div>
                                     Job Description:
-                                    {jobs.job.jobDesc}
+                                    {jobs.job.jobDescription}
                                 </div>
 
                                 <div>
                                     Job Type:
                                     {jobs.job.jobType}
                                 </div>
+
                                 <div>
                                     Start Date:
                                     {jobs.job.startDate}
@@ -85,59 +81,10 @@ export default function JobModalAdmin(jobs) {
                                     {jobs.job.endDate}
                                 </div>
 
-                                <div>
-                                    Experience:
-                                    {jobs.job.experience}
-                                </div>
+
 
                             </div>
-                            <div>
 
-                                <div>
-                                    Qualification:
-                                    {jobs.job.qualificationIds}
-                                </div>
-
-                                <div>
-                                    Responsibilities:
-                                    {jobs.job.responsibilities}
-                                </div>
-
-                                <div>
-                                    Facilities:
-                                    {jobs.job.facilities}
-                                </div>
-
-                                <div>
-                                    Skills:
-                                    {jobs.job.skillSet}
-                                </div>
-
-                                <div>
-                                    Language:
-                                    {jobs.job.languages}
-                                </div>
-
-                                <div>
-                                    Disability Type:
-                                    {jobs.job.disabilityTypeId}
-                                </div>
-
-                                <div>
-                                    Annual Salary:
-                                    {jobs.job.annualSalary}
-                                </div>
-
-                                <div>
-                                    Incentives:
-                                    {jobs.job.incentives}
-                                </div>
-
-                                <div>
-                                    Age:
-                                    {jobs.job.age}
-                                </div>
-                            </div>
                         </Stack>
                     </Typography>
                     <br />

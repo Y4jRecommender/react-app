@@ -28,6 +28,8 @@ export default function AllJobAdmin() {
             if (res.status === 200) {
                 alert("Job Deleted");
                 setJobs(jobs.filter((job) => job._id !== id));
+            } else {
+                alert("Something went wrong");
             }
         });
     };
@@ -43,16 +45,26 @@ export default function AllJobAdmin() {
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Job ID</TableCell>
+                                    <TableCell>Job Id</TableCell>
                                     <TableCell>Job Title</TableCell>
-                                    <TableCell>Job Location</TableCell>
-                                    <TableCell>Company Name</TableCell>
                                     <TableCell>Company Id</TableCell>
+                                    <TableCell>Company Name</TableCell>
+                                    <TableCell>Job Location</TableCell>
                                     <TableCell>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {jobs.map((job) => (
+                                {jobs.length === 0 && (
+                                    <TableRow
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row" colSpan={6}>
+                                            No Jobs Found
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+
+                                {jobs?.map((job) => (
                                     <TableRow
                                         key={job.__id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -61,9 +73,9 @@ export default function AllJobAdmin() {
                                             {job._id}
                                         </TableCell>
                                         <TableCell>{job.jobTitle}</TableCell>
-                                        <TableCell>{job.jobLocation}</TableCell>
+                                        <TableCell>{job.companyId}</TableCell>
                                         <TableCell>{job.companyName}</TableCell>
-                                        <TableCell>{job.companyID}</TableCell>
+                                        <TableCell>{job.jobLocation}</TableCell>
                                         <TableCell>
                                             <Stack spacing={1} direction="row">
                                                 <Button

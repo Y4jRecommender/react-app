@@ -3,33 +3,27 @@ import { TextField, Button, FormControl, InputLabel, Select, MenuItem, Container
 import { createJob } from '../../../API/job';
 import { SectionContext } from '../../../Context/sectionContext';
 import { AuthContext } from '../../../Context/authContext';
+
 export default function CreateJobPage() {
     const { setSection } = useContext(SectionContext);
-    const { id, name, user } = useContext(AuthContext);
+    const { id, name } = useContext(AuthContext);
     const [formData, setFormData] = useState({
-        jobCode: '',
+        hrName: "",
+        hrEmail: "",
+        hrPhone: "",
+        companyName: name,
+        companyId: id,
         jobTitle: '',
-        jobDesc: '',
+        jobDescription: '',
+        applications: [],
         jobType: '',
-        experience: '',
+        disabilityType: '',
+        openings: '',
         jobLocation: '',
-        noOfVacancies: '',
-        disabilityTypeId: '',
-        qualificationIds: '',
-        age: '',
-        gender: '',
-        skillSet: '',
-        responsibilities: '',
-        languages: '',
-        annualSalary: '',
-        incentives: '',
-        facilities: '',
         startDate: '',
         endDate: '',
-        companyID: id,
-        companyName: name,
-        address: user.address,
-        corporateStatus: 1,
+        status: 'active',
+        postedDate: '',
     });
 
     const handleChange = (event) => {
@@ -55,16 +49,7 @@ export default function CreateJobPage() {
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
                 <form onSubmit={handleSubmit}>
-                    <TextField
-                        name="jobCode"
-                        label="Job Code"
-                        value={formData.jobCode}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
+
                     <TextField
                         name="jobTitle"
                         label="Job Title"
@@ -76,11 +61,21 @@ export default function CreateJobPage() {
                         margin="normal"
                     />
                     <TextField
-                        name="jobDesc"
+                        name="jobDescription"
                         label="Job Description"
-                        value={formData.jobDesc}
+                        value={formData.jobDescription}
                         onChange={handleChange}
-                        required
+                        fullWidth
+                        multiline
+                        maxRows={5}
+                        variant="outlined"
+                        margin="normal"
+                    />
+                    <TextField
+                        name="jobType"
+                        label="Job Type"
+                        value={formData.jobType}
+                        onChange={handleChange}
                         fullWidth
                         multiline
                         maxRows={5}
@@ -88,157 +83,34 @@ export default function CreateJobPage() {
                         margin="normal"
                     />
 
-                    <FormControl variant="outlined" margin="normal" fullWidth>
-                        <InputLabel id="jobTypeLabel">Job Type</InputLabel>
-                        <Select labelId="jobTypeLabel" name="jobType" value={formData.jobType} onChange={handleChange}>
-                            <MenuItem value={1}>Software Development</MenuItem>
-                            <MenuItem value={2}>Human Resource</MenuItem>
-                            <MenuItem value={3}>Management Roles</MenuItem>
-                            <MenuItem value={4}>Marketing</MenuItem>
-                        </Select>
-                    </FormControl>
-
+                    {/* jobLocation */}
                     <TextField
-                        name="experience"
-                        label="Experience"
-                        value={formData.experience}
+                        name="jobLocation"
+                        label="Job Location"
+                        value={formData.jobLocation}
                         onChange={handleChange}
-                        required
-                        fullWidth
-                        type="number"
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <FormControl variant="outlined" margin="normal" fullWidth>
-                        <InputLabel id="jobLocationLabel">Job Location</InputLabel>
-                        <Select labelId="jobLocationLabel" name="jobLocation" value={formData.jobLocation} onChange={handleChange}>
-                            <MenuItem value={1}>Location 1</MenuItem>
-                            <MenuItem value={2}>Location 2</MenuItem>
-                            <MenuItem value={3}>Location 3</MenuItem>
-                            <MenuItem value={4}>Location 4</MenuItem>
-                        </Select>
-                    </FormControl>
-
-
-                    <TextField
-                        name="noOfVacancies"
-                        label="No. of Vacancies"
-                        value={formData.noOfVacancies}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <FormControl variant="outlined" margin="normal" fullWidth>
-                        <InputLabel id="disabilityTypeIdLabel">Disability Type</InputLabel>
-                        <Select labelId="disabilityTypeIdLabel" name="disabilityTypeId" value={formData.disabilityTypeId} onChange={handleChange}>
-                            <MenuItem value={1}>Disability Type 1</MenuItem>
-                            <MenuItem value={2}>Disability Type 2</MenuItem>
-                            <MenuItem value={3}>Disability Type 3</MenuItem>
-                            <MenuItem value={4}>Disability Type 4</MenuItem>
-                        </Select>
-                    </FormControl>
-
-                    <TextField
-                        name="qualificationIds"
-                        label="Qualification"
-                        value={formData.qualificationIds}
-                        onChange={handleChange}
-                        required
                         fullWidth
                         variant="outlined"
                         margin="normal"
                     />
 
                     <TextField
-                        name="age"
-                        label="Age"
-                        value={formData.age}
+                        name="openings"
+                        label="Openings"
+                        value={formData.openings}
                         onChange={handleChange}
-                        required
                         fullWidth
+                        type='number'
                         variant="outlined"
                         margin="normal"
                     />
 
-                    <FormControl variant="outlined" margin="normal" fullWidth>
-                        <InputLabel>Gender</InputLabel>
-                        <Select
-                            name="gender"
-                            value={formData.gender}
-                            onChange={handleChange}
-                            label="Gender"
-                        >
-                            <MenuItem value="1">Male</MenuItem>
-                            <MenuItem value="2">Female</MenuItem>
-                            <MenuItem value="0">Other</MenuItem>
-                        </Select>
-                    </FormControl>
-
+                    {/* Disability Type */}
                     <TextField
-                        name="skillSet"
-                        label="Skill Set"
-                        value={formData.skillSet}
+                        name="disabilityType"
+                        label="Disability Type"
+                        value={formData.disabilityType}
                         onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <TextField
-                        name="responsibilities"
-                        label="Responsibilities"
-                        value={formData.responsibilities}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <TextField
-                        name="languages"
-                        label="Languages"
-                        value={formData.languages}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <TextField
-                        name="annualSalary"
-                        label="Annual Salary"
-                        value={formData.annualSalary}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <TextField
-                        name="incentives"
-                        label="Incentives"
-                        value={formData.incentives}
-                        onChange={handleChange}
-                        required
-                        fullWidth
-                        variant="outlined"
-                        margin="normal"
-                    />
-
-                    <TextField
-                        name="facilities"
-                        label="Facilities"
-                        value={formData.facilities}
-                        onChange={handleChange}
-                        required
                         fullWidth
                         variant="outlined"
                         margin="normal"
@@ -268,12 +140,34 @@ export default function CreateJobPage() {
                         type="date"
                     />
 
+                    {/* hrEmail */}
                     <TextField
-                        name="CorporateStatus"
-                        label="Corporate Status"
-                        value={formData.corporateStatus}
+                        name="hrEmail"
+                        label="HR Email"
+                        value={formData.hrEmail}
                         onChange={handleChange}
-                        required
+                        fullWidth
+                        variant="outlined"
+                        margin="normal"
+                    />
+
+                    {/* hrPhone */}
+                    <TextField
+                        name="hrPhone"
+                        label="HR Phone"
+                        value={formData.hrPhone}
+                        onChange={handleChange}
+                        fullWidth
+                        variant="outlined"
+                        margin="normal"
+                    />
+
+                    {/* hrName */}
+                    <TextField
+                        name="hrName"
+                        label="HR Name"
+                        value={formData.hrName}
+                        onChange={handleChange}
                         fullWidth
                         variant="outlined"
                         margin="normal"

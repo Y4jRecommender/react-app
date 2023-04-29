@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Button, Container, Box, Typography } from "@mui/material";
-import { getAllJobs } from "../../../API/corporate";
-import { deleteJob } from "../../../API/job";
+import { deleteJob, getAllJobsByCompanyID } from "../../../API/job";
 import { AuthContext } from "../../../Context/authContext";
-import JobModelCorporate from "../JobModel";
 import { Stack } from "@mui/system";
 import JobModalCorporate from "../JobModel";
 import Table from '@mui/material/Table';
@@ -18,14 +16,21 @@ export default function AllJobCorporate() {
     const [jobs, setJobs] = useState([]);
     const { id } = useContext(AuthContext);
     useEffect(() => {
-        console.log(id);
-        const result = getAllJobs(id);
-        result.then((res) => {
-            setJobs(res.jobs);
-        });
-        console.log(jobs);
+        async function fetchData() {
+            const result = await getAllJobsByCompanyID(id);
+            console.log(result);
+            if (result.status === 200) {
+                setJobs(result.data.jobs);
+            } else {
+                alert("Error in fetching jobs");
+            }
+        }
+        if (id) {
+            fetchData();
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     const handleDelete = (id) => {
         const result = deleteJob(id);
         result.then((res) => {
@@ -47,16 +52,26 @@ export default function AllJobCorporate() {
                         <Table sx={{ minWidth: 650 }} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
-                                    <TableCell>Job ID</TableCell>
+                                    <TableCell>Job Id</TableCell>
                                     <TableCell>Job Title</TableCell>
+                                    <TableCell>Company Id</TableCell>
+                                    <TableCell>Company Name</TableCell>
                                     <TableCell>Job Location</TableCell>
-                                    <TableCell>Job Code</TableCell>
-                                    <TableCell>Last Date</TableCell>
                                     <TableCell>Action</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {jobs.map((job) => (
+                                {jobs.length === 0 && (
+                                    <TableRow
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell component="th" scope="row" colSpan={6}>
+                                            No Jobs Found
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+
+                                {jobs?.map((job) => (
                                     <TableRow
                                         key={job.__id}
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -65,9 +80,9 @@ export default function AllJobCorporate() {
                                             {job._id}
                                         </TableCell>
                                         <TableCell>{job.jobTitle}</TableCell>
+                                        <TableCell>{job.companyId}</TableCell>
+                                        <TableCell>{job.companyName}</TableCell>
                                         <TableCell>{job.jobLocation}</TableCell>
-                                        <TableCell>{job.jobCode}</TableCell>
-                                        <TableCell>{job.endDate}</TableCell>
                                         <TableCell>
                                             <Stack spacing={1} direction="row">
                                                 <Button
