@@ -62,7 +62,6 @@ const CorporateProfile = () => {
 
                             <TextField
                                 margin="normal"
-                                required
                                 fullWidth
                                 id="address"
                                 label="Address"

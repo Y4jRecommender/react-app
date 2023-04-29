@@ -71,7 +71,11 @@ const editUser = async (data) => {
             },
             body: JSON.stringify(data),
         });
-        return await response.json();
+        const result = {
+            status: response.status,
+            data: await response.json(),
+        }
+        return result;
     }
     catch (err) {
         console.log(err);

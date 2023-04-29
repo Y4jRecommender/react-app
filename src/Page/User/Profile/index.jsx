@@ -9,6 +9,7 @@ const ProfilePage = () => {
     const { section, setSection } = useContext(SectionContext);
 
     const [formData, setFormData] = useState({
+        _id: user._id,
         Misid: user.Misid,
         BatchId: user.BatchId,
         CandidateId: user.CandidateId,
@@ -34,7 +35,6 @@ const ProfilePage = () => {
         TotExpYears: user.TotExpYears,
         TotExpMonths: user.TotExpMonths,
         CDate: user.CDate,
-        
     });
 
     const handleChange = (e) => {
@@ -47,9 +47,14 @@ const ProfilePage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { data } = await editUser(formData);
-        setUser(data);
-        setSection("profile");
+        const result = await editUser(formData);
+        if (result.status === 200) {
+            alert("Profile updated successfully");
+            setUser(result.data);
+            setSection("profile");
+        } else {
+            alert("Something went wrong, please try again later");
+        }
     };
 
     return (
@@ -125,6 +130,7 @@ const ProfilePage = () => {
                                     <TextField
                                         label="Date of Birth"
                                         name="DateOfBirth"
+                                        type='date'
                                         value={formData.DateOfBirth}
                                         onChange={handleChange}
                                         fullWidth
@@ -300,7 +306,7 @@ const ProfilePage = () => {
                                         color="primary"
                                         fullWidth
                                     >
-                                        Submit
+                                        Edit
                                     </Button>
                                 </Grid>
                             </Grid>

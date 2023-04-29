@@ -12,6 +12,7 @@ import Button from '@mui/material/Button';
 import { AuthContext } from "../../Context/authContext";
 import { useGoogleLogin } from "@react-oauth/google";
 import { SectionContext } from '../../Context/sectionContext';
+import { Router } from 'react-router-dom';
 
 export default function Navbar() {
   const authContext = useContext(AuthContext);
@@ -38,11 +39,13 @@ export default function Navbar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Y4J
+            <Button variant="secondary" onClick={() => {
+              window.location.href = "/"
+            }}>Y4J</Button>
           </Typography>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Button variant="secondary" onClick={() => {
-               window.location.href = "/translation"
+              window.location.href = "/translation"
             }}>Translations</Button>
           </Typography>
 
