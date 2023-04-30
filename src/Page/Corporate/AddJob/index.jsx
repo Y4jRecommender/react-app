@@ -35,9 +35,8 @@ export default function CreateJobPage() {
         event.preventDefault();
         const res = await createJob(formData);
         console.log(res);
-        if (res.status === 201) {
+        if (res.status === 201 || res.status === 200) {
             setSection('home');
-            alert('Job Created Successfully');
         }
     };
 

@@ -10,11 +10,29 @@ const createJob = async (data) => {
             },
             body: JSON.stringify(data),
         });
-        
+
         const result = {
             status: response.status,
             data: await response.json(),
         };
+        if (result.status === 200 || result.status === 201) {
+            window.alert("Job created successfully, now processing the translation.");
+            const translationResult = await fetch(`${API}/job/translate?_id=${result.data.job.id}`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            if (translationResult.status === 200) {
+                window.alert("Translation completed successfully.");
+            }
+            const translation = await translationResult.json();
+            console.log(translation);
+        }
+        else {
+            window.alert("Error creating job");
+        }
         return result;
     }
     catch (err) {
@@ -50,6 +68,21 @@ const editJob = async (data) => {
             },
             body: JSON.stringify(data),
         });
+        if(response.status === 200 || response.status === 201) {
+            window.alert("Job updated successfully, now processing the translation.");
+            const translationResult = await fetch(`${API}/job/translate?_id=${data._id}`, {
+                method: "GET",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+            if (translationResult.status === 200) {
+                window.alert("Translation completed successfully.");
+            }
+            const translation = await translationResult.json();
+            console.log(translation);
+        }
         return await response.json();
     }
     catch (err) {
