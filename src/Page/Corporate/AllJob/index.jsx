@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 
 export default function AllJobCorporate() {
     const [jobs, setJobs] = useState([]);
-    const { id } = useContext(AuthContext);
+    const { id, languageId } = useContext(AuthContext);
     useEffect(() => {
         async function fetchData() {
             const result = await getAllJobsByCompanyID(id);
@@ -54,9 +54,9 @@ export default function AllJobCorporate() {
                                 <TableRow>
                                     <TableCell>Job Id</TableCell>
                                     <TableCell>Job Title</TableCell>
-                                    <TableCell>Company Id</TableCell>
-                                    <TableCell>Company Name</TableCell>
-                                    <TableCell>Job Location</TableCell>
+                                    <TableCell>HR Name</TableCell>
+                                    <TableCell>HR Email</TableCell>
+                                    <TableCell>Number of Applicants</TableCell>
                                     <TableCell>Action</TableCell>
                                 </TableRow>
                             </TableHead>
@@ -79,10 +79,10 @@ export default function AllJobCorporate() {
                                         <TableCell component="th" scope="row">
                                             {job._id}
                                         </TableCell>
-                                        <TableCell>{job.jobTitle}</TableCell>
-                                        <TableCell>{job.companyId}</TableCell>
-                                        <TableCell>{job.companyName}</TableCell>
-                                        <TableCell>{job.jobLocation}</TableCell>
+                                        <TableCell>{job.jobDescription[languageId].jobTitle}</TableCell>
+                                        <TableCell>{job.jobDescription[languageId].hrName}</TableCell>
+                                        <TableCell>{job.hrEmail}</TableCell>
+                                        <TableCell>{job.applications.length}</TableCell>
                                         <TableCell>
                                             <Stack spacing={1} direction="row">
                                                 <Button

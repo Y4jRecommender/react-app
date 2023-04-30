@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Container, Box, Typography } from "@mui/material";
 import { deleteJob, getAllJobs } from "../../../../API/job";
+import { AuthContext } from "../../../../Context/authContext"
 import JobModalAdmin from "../JobModel";
 import { Stack } from "@mui/system";
-
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,6 +14,8 @@ import Paper from '@mui/material/Paper';
 
 export default function AllJobAdmin() {
     const [jobs, setJobs] = useState([]);
+    const authContext = useContext(AuthContext);
+    const { languageId } = authContext;
     useEffect(() => {
         // call the api to get all the jobs
         const result = getAllJobs();
@@ -72,10 +74,10 @@ export default function AllJobAdmin() {
                                         <TableCell component="th" scope="row">
                                             {job._id}
                                         </TableCell>
-                                        <TableCell>{job.jobTitle}</TableCell>
+                                        <TableCell>{job.jobDescription[languageId].jobTitle}</TableCell>
                                         <TableCell>{job.companyId}</TableCell>
-                                        <TableCell>{job.companyName}</TableCell>
-                                        <TableCell>{job.jobLocation}</TableCell>
+                                        <TableCell>{job.jobDescription[languageId].companyName}</TableCell>
+                                        <TableCell>{job.jobDescription[languageId].jobLocation}</TableCell>
                                         <TableCell>
                                             <Stack spacing={1} direction="row">
                                                 <Button

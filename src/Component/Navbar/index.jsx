@@ -12,11 +12,11 @@ import Button from '@mui/material/Button';
 import { AuthContext } from "../../Context/authContext";
 import { useGoogleLogin } from "@react-oauth/google";
 import { SectionContext } from '../../Context/sectionContext';
-import { Router } from 'react-router-dom';
+import { FormControl, InputLabel, Select } from '@mui/material';
 
 export default function Navbar() {
   const authContext = useContext(AuthContext);
-  const { name, auth, LoginGoogle, Logout, role } = authContext;
+  const { name, auth, LoginGoogle, Logout, role, language, updateLanguage } = authContext;
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { setSection } = useContext(SectionContext);
 
@@ -48,6 +48,34 @@ export default function Navbar() {
               window.location.href = "/translation"
             }}>Translations</Button>
           </Typography>
+
+          {/* Update the language select box */}
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">Language</InputLabel>
+            <Select
+              sx={{ color: "white", borderColor: 'white', '&:before': { borderColor: 'white' } }}
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={language}
+              label="Language"
+              onChange={(e) => {
+                updateLanguage(e.target.value)
+              }}
+            >
+              <MenuItem value={"en"}>English</MenuItem>
+              <MenuItem value={"as"}>Assamese</MenuItem>
+              <MenuItem value={"hi"}>Hindi</MenuItem>
+              <MenuItem value={"mr"}>Marathi</MenuItem>
+              <MenuItem value={"ta"}>Tamil</MenuItem>
+              <MenuItem value={"bn"}>Bengali</MenuItem>
+              <MenuItem value={"kn"}>Kannada</MenuItem>
+              <MenuItem value={"or"}>Oriya</MenuItem>
+              <MenuItem value={"te"}>Telugu</MenuItem>
+              <MenuItem value={"gu"}>Gujarati</MenuItem>
+              <MenuItem value={"ml"}>Malayalam</MenuItem>
+              <MenuItem value={"pa"}>Punjabi</MenuItem>
+            </Select>
+          </FormControl>
 
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {name} &nbsp;
