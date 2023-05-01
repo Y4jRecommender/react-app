@@ -3,7 +3,7 @@ import { Button, Container, Box, Typography } from "@mui/material";
 import { deleteJob, getAllJobsByCompanyID } from "../../../API/job";
 import { AuthContext } from "../../../Context/authContext";
 import { Stack } from "@mui/system";
-import JobModalCorporate from "../JobModel";
+import JobModal from "../../../Component/JobModal";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -93,7 +93,7 @@ export default function AllJobCorporate() {
                                                 >
                                                     Delete
                                                 </Button>
-                                                <JobModalCorporate
+                                                <JobModal
                                                     job={job}
                                                 />
                                             </Stack>

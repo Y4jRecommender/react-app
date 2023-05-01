@@ -1,7 +1,6 @@
 import { useContext, React, useEffect, useState } from 'react'
 import { AuthContext } from '../../../Context/authContext';
 import { useNavigate } from 'react-router-dom';
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Container, Grid, Paper, Typography } from '@mui/material';
@@ -11,13 +10,23 @@ import ProfilePage from '../Profile';
 
 import { getAllJobs } from '../../../API/job';
 import JobModalUser from '../Job/JobModel';
+import JobModal from '../../../Component/JobModal';
 
 export default function Dashboard() {
   const authContext = useContext(AuthContext);
-  const { auth } = authContext;
+  const { auth, languageId } = authContext;
   const navigate = useNavigate();
   const { section, setSection } = useContext(SectionContext);
   const [jobs, setJobs] = useState([]);
+
+  // convert 2021-03-20T11:30:05.000Z to dd/mm/yy format
+  const convertDate = (date) => {
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    return `${day}-${month}-${year}`;
+  };
 
   useEffect(() => {
     if (!auth) {
@@ -49,14 +58,15 @@ export default function Dashboard() {
               {/* Show the job in form of cards */}
               {jobs.map((job) => (
                 <Grid item xs={12} sm={6} md={4}>
-                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 200 }}>
-                    <h3>{job.jobTitle}</h3>
+                  <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column', height: 250 }}>
+                    <h3>{job.jobDescription[languageId].jobTitle}</h3>
                     <p>
-                      Location: {job.jobLocation}<br />
-                      Company Name: {job.companyName}<br />
-                      Company Id:{job.companyID}
+                      Location: {job.jobDescription[languageId].jobLocation}<br />
+                      Company Name: {job.jobDescription[languageId].companyName}<br />
+                      Company Id:{job.companyId} <br />
+                      Last date to apply: {convertDate(job.endDate)}
                     </p>
-                    <JobModalUser job={job} />
+                    <JobModal job={job} />
                   </Paper>
                 </Grid>
               ))}

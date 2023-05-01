@@ -81,8 +81,6 @@ export default function JobModalAdmin(jobs) {
                                     {jobs.job.endDate}
                                 </div>
 
-
-
                             </div>
 
                         </Stack>

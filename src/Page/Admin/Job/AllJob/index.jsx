@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { Button, Container, Box, Typography } from "@mui/material";
 import { deleteJob, getAllJobs } from "../../../../API/job";
 import { AuthContext } from "../../../../Context/authContext"
-import JobModalAdmin from "../JobModel";
 import { Stack } from "@mui/system";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +10,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import JobModal from "../../../../Component/JobModal"
 export default function AllJobAdmin() {
     const [jobs, setJobs] = useState([]);
     const authContext = useContext(AuthContext);
@@ -88,7 +87,7 @@ export default function AllJobAdmin() {
                                                 >
                                                     Delete
                                                 </Button>
-                                                <JobModalAdmin
+                                                <JobModal
                                                     job={job}
                                                 />
                                             </Stack>

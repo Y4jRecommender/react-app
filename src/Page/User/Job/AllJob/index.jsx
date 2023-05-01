@@ -3,7 +3,7 @@ import { AuthContext } from "../../../../Context/authContext";
 import { Container, Box, Button, Typography } from "@mui/material";
 import { getAllJobs } from "../../../../API/job";
 import { Stack } from "@mui/system";
-import JobModalUser from "../JobModel";
+import JobModal from "../../../../Component/JobModal";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -60,7 +60,7 @@ export default function AllJobUser() {
                                         <TableCell>{job.companyId}</TableCell>
                                         <TableCell>
                                             <Stack spacing={1} direction="row">
-                                                <JobModalUser job={job} />
+                                                <JobModal job={job} />
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
